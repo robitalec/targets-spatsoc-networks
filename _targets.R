@@ -2,6 +2,7 @@ library(targets)
 library(tarchetypes)
 
 library(data.table)
+library(spatsoc)
 
 # Load functions
 source('R/functions.R')
