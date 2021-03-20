@@ -10,9 +10,12 @@ tar_option_set(format = "qs")
 # Set variables
 tempthresh <- '10 minutes'
 spatthresh <- 50
+input <- 'input'
 
 # Targets
-list(
-  tar_target(data, data.frame(x = sample.int(100), y = sample.int(100))),
-  tar_target(summary, summ(data)) # Call your custom functions as needed.
+c(
+  tar_files(
+    paths,
+    dir(input, '.csv', full.names = TRUE)
+    )
 )
