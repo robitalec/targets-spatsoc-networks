@@ -17,6 +17,8 @@ input <- 'input'
 
 datetime <- 'datetime'
 tz <- 'Canada/Newfoundland'
+id <- 'ID'
+coords <- c('X', 'Y')
 
 # Targets
 c(
