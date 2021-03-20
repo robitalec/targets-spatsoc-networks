@@ -1,4 +1,5 @@
 library(targets)
+library(tarchetypes)
 
 # Load functions
 source('R/functions.R')
