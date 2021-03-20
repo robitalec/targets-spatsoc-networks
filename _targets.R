@@ -42,11 +42,12 @@ c(
   tar_target(
     timegroups,
     group_times(prep, datetime, tempthresh),
-    map(dates)
+    map(prep)
   ),
 
   tar_target(
     spatgroups,
-    group_pts(timegroups, spatthresh, id, coords, 'timegroup')
+    group_pts(timegroups, spatthresh, id, coords, 'timegroup'),
+    map(timegroups)
   )
 )
