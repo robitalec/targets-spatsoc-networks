@@ -34,5 +34,12 @@ c(
     dates,
     prep_dates(locs, datetime, tz),
     map(locs)
+  ),
+
+  tar_target(
+    timegroups,
+    spatsoc::group_times(dates, datetime, tempthresh),
+    map(dates)
   )
+
 )
