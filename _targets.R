@@ -8,7 +8,7 @@ library(tarchetypes)
 
 library(data.table)
 library(spatsoc)
-
+library(asnipe)
 
 
 # Functions ---------------------------------------------------------------
