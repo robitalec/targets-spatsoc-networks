@@ -89,5 +89,11 @@ c(
     graphs,
     graph.adjacency(networks, mode = mode, diag = diag, weighted = weighted),
     map(networks)
+  ),
+
+  tar_target(
+    metrics,
+    calc_metrics(graphs),
+    map(graphs)
   )
 )
