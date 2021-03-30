@@ -17,9 +17,7 @@ source('R/functions.R')
 
 
 # Targets options ---------------------------------------------------------
-tar_option_set(format = "qs",
-               error = 'workspace')
-
+tar_option_set(format = "qs")
 
 
 # Variables ---------------------------------------------------------------
