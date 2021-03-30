@@ -40,19 +40,10 @@ mode <- 'undirected'
 diag <- FALSE
 weighted <- TRUE
 
-# values <- list(path = dir(input, '.csv', full.names = TRUE))
-
-# Or if you want to explicitly set different data paths, thresholds:
-values <- list(path = dir(input, '.csv', full.names = TRUE),
-               spatthresh = c(10, 20),
-               tempthresh = c('5 minutes', '10 minutes')
-)
 splitBy <- c('yr', 'mnth')
 
 # Targets -----------------------------------------------------------------
-tar_map(
-  values = values,
-  c(
+tar <- c(
     tar_target(
       locs,
       fread(path)
