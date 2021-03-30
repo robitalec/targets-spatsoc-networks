@@ -61,6 +61,11 @@ tar <- c(
   ),
 
   tar_target(
+    splitsnames,
+    unique(prep[, .(path = path), .SDcols = splitBy, by = splitBy])
+  ),
+
+  tar_target(
     timegroups,
     group_times(splits, datetime, tempthresh),
     map(splits)
