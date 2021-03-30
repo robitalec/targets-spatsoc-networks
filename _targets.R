@@ -42,71 +42,12 @@ mode <- 'undirected'
 diag <- FALSE
 weighted <- TRUE
 
+# values <- list(path = dir(input, '.csv', full.names = TRUE))
+
 
 # Targets -----------------------------------------------------------------
-# c(
-#   tar_files(
-#     paths,
-#     dir(input, '.csv', full.names = TRUE)
-#     ),
-#
-#   tar_target(
-#     locs,
-#     fread(paths),
-#     map(paths)
-#   ),
-#
-#   tar_target(
-#     prep,
-#     prep_dates(locs, datetime, tz),
-#     map(locs)
-#   ),
-#
-#   tar_target(
-#     timegroups,
-#     group_times(prep, datetime, tempthresh),
-#     map(prep)
-#   ),
-#
-#   tar_target(
-#     spatgroups,
-#     group_pts(timegroups, spatthresh, id, coords, 'timegroup'),
-#     map(timegroups)
-#   ),
-#
-#   tar_target(
-#     gbi,
-#     get_gbi(DT = spatgroups, group = group, id = id),
-#     map(spatgroups)
-#   ),
-#
-#   tar_target(
-#     networks,
-#     get_network(gbi, data_format = 'GBI', association_index = associationindex),
-#     map(gbi)
-#   ),
-#
-#   tar_target(
-#     graphs,
-#     graph.adjacency(networks, mode = mode, diag = diag, weighted = weighted),
-#     map(networks)
-#   ),
-#
-#   tar_target(
-#     metrics,
-#     calc_metrics(graphs),
-#     map(graphs)
-#   ),
-#
-#   # randomizations
-# )
-splitBy <- c('yr', 'mnth')
-
-
-# values could be a df of path + thresholds etc
-
 tar_map(
-  values = list(path = dir(input, '.csv', full.names = TRUE)),
+  values = values,
   c(
     tar_target(
       locs,
