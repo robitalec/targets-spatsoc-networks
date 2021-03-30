@@ -44,62 +44,59 @@ splitBy <- c('yr', 'mnth')
 
 # Targets -----------------------------------------------------------------
 tar <- c(
-    tar_target(
-      locs,
-      fread(path)
-    ),
+  tar_target(
+    locs,
+    fread(path)
+  ),
 
-    tar_target(
-      prep,
-      prep_dates(locs, datetime, tz)
-    ),
+  tar_target(
+    prep,
+    prep_dates(locs, datetime, tz)
+  ),
 
-    tar_target(
-      splits,
-      prep[, tar_group := .GRP, by = splitBy],
-      iteration = 'group'
-    ),
+  tar_target(
+    splits,
+    prep[, tar_group := .GRP, by = splitBy],
+    iteration = 'group'
+  ),
 
-    tar_target(
-      timegroups,
-      group_times(splits, datetime, tempthresh),
-      map(splits)
-    ),
+  tar_target(
+    timegroups,
+    group_times(splits, datetime, tempthresh),
+    map(splits)
+  ),
 
-    tar_target(
-      spatgroups,
-      group_pts(timegroups, spatthresh, id, coords, 'timegroup'),
-      map(timegroups)
-    ),
+  tar_target(
+    spatgroups,
+    group_pts(timegroups, spatthresh, id, coords, 'timegroup'),
+    map(timegroups)
+  ),
 
-    tar_target(
-      gbi,
-      get_gbi(DT = spatgroups, group = group, id = id),
-      map(spatgroups)
-    ),
+  tar_target(
+    gbi,
+    get_gbi(DT = spatgroups, group = group, id = id),
+    map(spatgroups)
+  ),
 
-    tar_target(
-      networks,
-      get_network(gbi, data_format = 'GBI', association_index = associationindex),
-      map(gbi)
-    ),
+  tar_target(
+    networks,
+    get_network(gbi, data_format = 'GBI', association_index = associationindex),
+    map(gbi)
+  ),
 
-    tar_target(
-      graphs,
-      graph.adjacency(networks, mode = mode, diag = diag, weighted = weighted),
-      map(networks)
-    ),
+  tar_target(
+    graphs,
+    graph.adjacency(networks, mode = mode, diag = diag, weighted = weighted),
+    map(networks)
+  ),
 
-    tar_target(
-      metrics,
-      calc_metrics(graphs),
-      map(graphs)
-    ),
-
-    tar_target(
-      comb,
-      metrics[, splitBy := splitNames],
-      map(splitNames)
-    )
+  tar_target(
+    metrics,
+    calc_metrics(graphs),
+    map(graphs)
   )
 )
+
+
+path <- 'input/locs-a.csv'
+tar
