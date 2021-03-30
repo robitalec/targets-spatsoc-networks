@@ -31,6 +31,8 @@ tz <- 'Canada/Newfoundland'
 id <- 'ID'
 coords <- c('X', 'Y')
 
+group <- 'group'
+
 
 
 # Targets -----------------------------------------------------------------
@@ -62,5 +64,11 @@ c(
     spatgroups,
     group_pts(timegroups, spatthresh, id, coords, 'timegroup'),
     map(timegroups)
+  ),
+
+  tar_target(
+    gbi,
+    get_gbi(DT = spatgroups, group = group, id = id),
+    map(spatgroups)
   )
 )
