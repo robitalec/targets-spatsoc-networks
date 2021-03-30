@@ -99,6 +99,12 @@ tar <- c(
     metrics,
     calc_metrics(graphs),
     map(graphs)
+  ),
+
+  tar_target(
+    combined,
+    cbind(metrics, splitsnames),
+    map(metrics, splitsnames)
   )
 )
 
