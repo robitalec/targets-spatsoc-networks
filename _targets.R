@@ -100,6 +100,11 @@ weighted <- TRUE
 #
 #   # randomizations
 # )
+splitBy <- c('yr', 'mnth')
+
+
+# values could be a df of path + thresholds etc
+
 tar_map(
   values = list(path = dir(input, '.csv', full.names = TRUE)),
   c(
@@ -120,28 +125,48 @@ tar_map(
 
     tar_target(
       spatgroups,
-      group_pts(timegroups, spatthresh, id, coords, 'timegroup')
+      group_pts(timegroups, spatthresh, id, coords, 'timegroup', splitBy = splitBy)
+    ),
+
+    tar_target(
+      splits,
+      split(spatgroups, by = splitBy),
+      iteration = 'list'
+    ),
+
+    tar_target(
+      splitNames,
+      names(splits)
     ),
 
     tar_target(
       gbi,
-      get_gbi(DT = spatgroups, group = group, id = id)
+      get_gbi(DT = splits, group = group, id = id),
+      map(splits)
     ),
 
     tar_target(
       networks,
-      get_network(gbi, data_format = 'GBI', association_index = associationindex)
+      get_network(gbi, data_format = 'GBI', association_index = associationindex),
+      map(gbi)
     ),
 
     tar_target(
       graphs,
-      graph.adjacency(networks, mode = mode, diag = diag, weighted = weighted)
+      graph.adjacency(networks, mode = mode, diag = diag, weighted = weighted),
+      map(networks)
     ),
 
     tar_target(
       metrics,
-      calc_metrics(graphs)
+      calc_metrics(graphs),
+      map(graphs)
+    ),
+
+    tar_target(
+      comb,
+      metrics[, splitBy := splitNames],
+      map(splitNames)
     )
   )
 )
-
