@@ -55,30 +55,27 @@ tar <- c(
     ),
 
     tar_target(
+      splits,
+      prep[, tar_group := .GRP, by = splitBy],
+      iteration = 'group'
+    ),
+
+    tar_target(
       timegroups,
-      group_times(prep, datetime, tempthresh)
+      group_times(splits, datetime, tempthresh),
+      map(splits)
     ),
 
     tar_target(
       spatgroups,
-      group_pts(timegroups, spatthresh, id, coords, 'timegroup', splitBy = splitBy)
-    ),
-
-    tar_target(
-      splits,
-      split(spatgroups, by = splitBy),
-      iteration = 'list'
-    ),
-
-    tar_target(
-      splitNames,
-      names(splits)
+      group_pts(timegroups, spatthresh, id, coords, 'timegroup'),
+      map(timegroups)
     ),
 
     tar_target(
       gbi,
-      get_gbi(DT = splits, group = group, id = id),
-      map(splits)
+      get_gbi(DT = spatgroups, group = group, id = id),
+      map(spatgroups)
     ),
 
     tar_target(
