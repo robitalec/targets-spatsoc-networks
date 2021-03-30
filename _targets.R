@@ -1,16 +1,27 @@
+# === Spatsoc networks - targets workflow ---------------------------------
+# Alec L. Robitaille
+
+
+# Packages ----------------------------------------------------------------
 library(targets)
 library(tarchetypes)
 
 library(data.table)
 library(spatsoc)
 
-# Load functions
+
+
+# Functions ---------------------------------------------------------------
 source('R/functions.R')
 
-# Set target-specific options.
+
+
+# Targets options ---------------------------------------------------------
 tar_option_set(format = "qs")
 
-# Set variables
+
+
+# Variables ---------------------------------------------------------------
 tempthresh <- '10 minutes'
 spatthresh <- 50
 input <- 'input'
@@ -20,7 +31,9 @@ tz <- 'Canada/Newfoundland'
 id <- 'ID'
 coords <- c('X', 'Y')
 
-# Targets
+
+
+# Targets -----------------------------------------------------------------
 c(
   tar_files(
     paths,
