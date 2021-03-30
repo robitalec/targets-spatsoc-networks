@@ -62,7 +62,7 @@ tar <- c(
 
   tar_target(
     splitsnames,
-    unique(prep[, .(path = path), .SDcols = splitBy, by = splitBy])
+    unique(prep[, .(path = path), by = splitBy])
   ),
 
   tar_target(
