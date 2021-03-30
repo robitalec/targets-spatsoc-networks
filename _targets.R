@@ -44,6 +44,12 @@ weighted <- TRUE
 
 # values <- list(path = dir(input, '.csv', full.names = TRUE))
 
+# Or if you want to set data set specific thresholds:
+values <- list(path = c(file.path(input, 'locs-a.csv'), file.path(input, 'locs-a.csv')),
+               spatthresh = c(10, 20),
+               tempthresh = c('5 minutes', '10 minutes')
+)
+splitBy <- c('yr', 'mnth')
 
 # Targets -----------------------------------------------------------------
 tar_map(
