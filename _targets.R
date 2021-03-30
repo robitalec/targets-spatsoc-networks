@@ -32,7 +32,7 @@ id <- 'ID'
 coords <- c('X', 'Y')
 
 group <- 'group'
-
+associationindex <- 'SRI'
 
 
 # Targets -----------------------------------------------------------------
@@ -70,5 +70,11 @@ c(
     gbi,
     get_gbi(DT = spatgroups, group = group, id = id),
     map(spatgroups)
+  ),
+
+  tar_target(
+    network,
+    get_network(gbi, data_format = 'GBI', association_index = associationindex),
+    map(gbi)
   )
 )
