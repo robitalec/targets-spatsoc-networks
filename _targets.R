@@ -9,7 +9,7 @@ library(tarchetypes)
 library(data.table)
 library(spatsoc)
 library(asnipe)
-
+library(igraph)
 
 # Functions ---------------------------------------------------------------
 source('R/functions.R')
@@ -32,7 +32,14 @@ id <- 'ID'
 coords <- c('X', 'Y')
 
 group <- 'group'
+
+# asnipe::get_network
 associationindex <- 'SRI'
+
+# igraph::graph.adjacency
+mode <- 'undirected'
+diag <- FALSE
+weighted <- TRUE
 
 
 # Targets -----------------------------------------------------------------
