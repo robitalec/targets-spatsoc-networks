@@ -113,3 +113,13 @@ tar <- c(
     map(combined)
   )
 )
+
+
+# Branch over multiple paths
+paths <- dir(input, '.csv', full.names = TRUE)
+values <- list(path = paths)
+
+tar_map(
+  values = values,
+  tar
+)
