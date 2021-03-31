@@ -1,0 +1,21 @@
+---
+output: github_document
+always_allow_html: true
+---
+
+# targets-spatsoc-networks
+
+
+```{r include=FALSE}
+a <- targets::tar_visnetwork(targets_only = TRUE)
+```
+
+```{r, echo = FALSE}
+a
+```
+
+## Resources
+
+[`spatsoc` vignette: Using `spatsoc` in social network analysis](https://docs.ropensci.org/spatsoc/articles/using-in-sna.html)
+
+[`targets` manual](https://books.ropensci.org/targets/)
