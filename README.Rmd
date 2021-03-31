@@ -14,6 +14,7 @@ a <- targets::tar_visnetwork(targets_only = TRUE)
 a
 ```
 
+
 ## Resources
 
 [`spatsoc` vignette: Using `spatsoc` in social network analysis](https://docs.ropensci.org/spatsoc/articles/using-in-sna.html)
