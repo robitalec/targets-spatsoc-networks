@@ -3,6 +3,10 @@ output: github_document
 always_allow_html: true
 ---
 
+
+[![DOI](https://zenodo.org/badge/353198467.svg)](https://zenodo.org/badge/latestdoi/353198467)
+
+
 # targets-spatsoc-networks
 
 
