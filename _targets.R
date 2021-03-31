@@ -40,7 +40,9 @@ mode <- 'undirected'
 diag <- FALSE
 weighted <- TRUE
 
+# group_pts/general branching
 splitBy <- c('yr', 'mnth')
+
 
 # Targets -----------------------------------------------------------------
 tar <- c(
@@ -115,7 +117,16 @@ tar <- c(
 )
 
 
-# Branch over multiple paths
+
+# Output option 1 ---------------------------------------------------------
+# Run for a single path
+# path <- 'input/locs-a.csv'
+# tar
+
+
+
+# Output option 2 ---------------------------------------------------------
+# Or branch over multiple paths
 paths <- dir(input, '.csv', full.names = TRUE)
 values <- list(path = paths)
 
