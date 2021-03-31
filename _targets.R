@@ -127,8 +127,8 @@ tar <- c(
 
 # Option 1 ----------------------------------------------------------------
 # Run for a single path
-# path <- 'input/locs-a.csv'
-# tar
+path <- 'input/locs-a.csv'
+tar
 
 
 
@@ -144,12 +144,28 @@ tar_map(
 
 
 # Option 3 ----------------------------------------------------------------
-# Or for a sensitivity analysis, run across multiple datasets and thresholds (for example)
+# Or for a data set specific thresholds
 paths <- dir(input, '.csv', full.names = TRUE)
 values <- list(
   path = paths,
   tempthresh = c('10 minutes', '20 minutes'),
   spatthresh = c(50, 100)
+)
+
+tar_map(
+  values = values,
+  tar
+)
+
+
+# Option 4 ----------------------------------------------------------------
+# Or for a sensitivity analysis, run across datasets and multiple thresholds (for example)
+# Note, we use rep to ensure the lengths are equal
+paths <- dir(input, '.csv', full.names = TRUE)
+values <- list(
+  path = rep(paths, 2),
+  tempthresh = rep(c('10 minutes', '20 minutes'), each = 2),
+  spatthresh = rep(c(50, 100), each = 2)
 )
 
 tar_map(
