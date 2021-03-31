@@ -134,3 +134,18 @@ tar_map(
   values = values,
   tar
 )
+
+
+# Option 3 ----------------------------------------------------------------
+# Or for a sensitivity analysis, run across multiple datasets and thresholds (for example)
+paths <- dir(input, '.csv', full.names = TRUE)
+values <- list(
+  path = paths,
+  tempthresh = c('10 minutes', '20 minutes'),
+  spatthresh = c(50, 100)
+)
+
+tar_map(
+  values = values,
+  tar
+)
