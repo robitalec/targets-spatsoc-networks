@@ -15,6 +15,8 @@ generating networks using
 2.  Add your data to the input folder (and remove the example data)
 3.  Open `_targets.R`
 4.  Change the global variables in the Variables section
+5.  Set your output (see below)
+6.  Run `targets::tar_make()`
 
 As for output, right now it’s set up with four different options after
 the Targets section
