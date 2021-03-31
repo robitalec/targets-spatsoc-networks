@@ -104,15 +104,9 @@ tar <- c(
   ),
 
   tar_target(
-    combined,
+    merged,
     cbind(metrics, splitsnames, spatthresh = spatthresh, tempthresh = tempthresh),
     map(metrics, splitsnames)
-  ),
-
-  tar_target(
-    outcsv,
-    fwrite(combined, file.path('output', 'all-metrics.csv'), append = TRUE),
-    map(combined)
   )
 )
 
