@@ -160,12 +160,12 @@ tar_map(
 
 # Option 4 ----------------------------------------------------------------
 # Or for a sensitivity analysis, run across datasets and multiple thresholds (for example)
-# Note, we use rep to ensure the lengths are equal
+# Note, we use data.table::CJ to make all to combinations of data and thresholds
 paths <- dir(input, '.csv', full.names = TRUE)
-values <- list(
-  path = rep(paths, 2),
-  tempthresh = rep(c('10 minutes', '20 minutes'), each = 2),
-  spatthresh = rep(c(50, 100), each = 2)
+values <- CJ(
+  path = paths,
+  tempthresh = c('10 minutes', '20 minutes'),
+  spatthresh = c(50, 100)
 )
 
 tar_map(
