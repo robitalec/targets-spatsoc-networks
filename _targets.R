@@ -17,7 +17,7 @@ source('R/functions.R')
 
 
 # Targets options ---------------------------------------------------------
-tar_option_set(format = "qs")
+tar_option_set(format = 'qs')
 
 
 # Variables ---------------------------------------------------------------
@@ -107,5 +107,9 @@ tar <- c(
     map(metrics, splitsnames)
   ),
 
-
+  tar_target(
+    outcsv,
+    fwrite(combined, file.path('output', 'all-metrics.csv'), append = TRUE),
+    map(combined)
+  )
 )
