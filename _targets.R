@@ -118,14 +118,21 @@ tar <- c(
 
 
 
-# Output option 1 ---------------------------------------------------------
+
+# Output ------------------------------------------------------------------
+
+# Note, to choose which option to run, simply comment out the other options
+# targets will run the last one left uncommented
+
+
+# Option 1 ----------------------------------------------------------------
 # Run for a single path
 # path <- 'input/locs-a.csv'
 # tar
 
 
 
-# Output option 2 ---------------------------------------------------------
+# Option 2 ----------------------------------------------------------------
 # Or branch over multiple paths
 paths <- dir(input, '.csv', full.names = TRUE)
 values <- list(path = paths)
