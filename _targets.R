@@ -129,15 +129,19 @@ path <- 'input/locs-a.csv'
 tar
 
 
-
 # Option 2 ----------------------------------------------------------------
 # Or branch over multiple paths
 paths <- dir(input, '.csv', full.names = TRUE)
 values <- list(path = paths)
 
-tar_map(
+map <- tar_map(
   values = values,
   tar
+)
+
+c(tar,
+  map,
+  tar_combine(out, map[[length(map)]])
 )
 
 
@@ -150,9 +154,14 @@ values <- list(
   spatthresh = c(50, 100)
 )
 
-tar_map(
+map <- tar_map(
   values = values,
   tar
+)
+
+c(tar,
+  map,
+  tar_combine(out, map[[length(map)]])
 )
 
 
@@ -166,7 +175,13 @@ values <- CJ(
   spatthresh = c(50, 100)
 )
 
-tar_map(
+
+map <- tar_map(
   values = values,
   tar
+)
+
+c(tar,
+  map,
+  tar_combine(out, map[[length(map)]])
 )
