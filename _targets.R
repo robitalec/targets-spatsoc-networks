@@ -103,11 +103,9 @@ tar <- c(
 
   tar_target(
     combined,
-    cbind(metrics, splitsnames),
+    cbind(metrics, splitsnames, spatthresh = spatthresh, tempthresh = tempthresh),
     map(metrics, splitsnames)
-  )
+  ),
+
+
 )
-
-
-path <- 'input/locs-a.csv'
-tar
