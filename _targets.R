@@ -139,8 +139,7 @@ map <- tar_map(
   tar
 )
 
-c(tar,
-  map,
+c(map,
   tar_combine(out, map[[length(map)]])
 )
 
@@ -159,8 +158,7 @@ map <- tar_map(
   tar
 )
 
-c(tar,
-  map,
+c(map,
   tar_combine(out, map[[length(map)]])
 )
 
@@ -181,7 +179,6 @@ map <- tar_map(
   tar
 )
 
-c(tar,
-  map,
+c(map,
   tar_combine(out, map[[length(map)]])
 )
