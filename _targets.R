@@ -103,10 +103,6 @@ tar <- c(
     map(graphs)
   ),
 
-  # Note: this should be the last defined target in this list
-  #       to ensure that the results are combined.
-  #       See below where tar_combine(out, map[[length(map)]])
-  #       This combines the last step into a global output
   tar_target(
     merged,
     cbind(metrics, splitsnames, spatthresh = spatthresh, tempthresh = tempthresh),
@@ -140,7 +136,7 @@ map <- tar_map(
 )
 
 c(map,
-  tar_combine(out, map[[length(map)]])
+  tar_combine(out, map['merged'])
 )
 
 
@@ -159,7 +155,7 @@ map <- tar_map(
 )
 
 c(map,
-  tar_combine(out, map[[length(map)]])
+  tar_combine(out, map['merged'])
 )
 
 
@@ -180,5 +176,5 @@ map <- tar_map(
 )
 
 c(map,
-  tar_combine(out, map[[length(map)]])
+  tar_combine(out, map['merged'])
 )
