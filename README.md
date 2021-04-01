@@ -31,6 +31,9 @@ the Targets section
 To select your output format, comment out or delete the other options.
 Targets looks for the last declared target in the `_targets.R` file.
 
+Note: randomizations in progress, see the
+[branch](https://github.com/robitalec/targets-spatsoc-networks/tree/randomizations).
+
 ## Resources
 
 [`spatsoc` vignette: Using `spatsoc` in social network
