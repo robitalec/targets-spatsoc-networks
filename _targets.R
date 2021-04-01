@@ -40,9 +40,12 @@ mode <- 'undirected'
 diag <- FALSE
 weighted <- TRUE
 
-# group_pts/general branching
+# spatsoc::group_pts/spatsoc::randomizations also used to for dynamic branching
 splitBy <- c('yr', 'mnth')
 
+# spatsoc::randomizations
+iterations <- 100
+type <- 'trajectory'
 
 # Targets -----------------------------------------------------------------
 tar <- c(
@@ -57,14 +60,28 @@ tar <- c(
   ),
 
   tar_target(
+    randomized,
+    randomizations(
+      DT = prep,
+      type = type,
+      id = id,
+      group = 'group',
+      coords = coords,
+      datetime = datetime,
+      splitBy = splitBy,
+      iterations = iterations
+    )
+  ),
+
+  tar_target(
     splits,
-    prep[, tar_group := .GRP, by = splitBy],
+    randomized[, tar_group := .GRP, by = c(splitBy, 'iteration')],
     iteration = 'group'
   ),
 
   tar_target(
     splitsnames,
-    unique(prep[, .(path = path), by = splitBy])
+    unique(randomized[, .(path = path), by = c(splitBy, 'iteration')])
   ),
 
   tar_target(
@@ -75,9 +92,10 @@ tar <- c(
 
   tar_target(
     spatgroups,
-    group_pts(timegroups, spatthresh, id, coords, 'timegroup'),
+    group_pts(timegroups, spatthresh, id, coords, 'timegroup', splitBy),
     map(timegroups)
   ),
+
 
   tar_target(
     gbi,
@@ -142,39 +160,39 @@ c(map,
 
 # Option 3 ----------------------------------------------------------------
 # Or for a data set specific thresholds
-paths <- dir(input, '.csv', full.names = TRUE)
-values <- list(
-  path = paths,
-  tempthresh = c('10 minutes', '20 minutes'),
-  spatthresh = c(50, 100)
-)
+# paths <- dir(input, '.csv', full.names = TRUE)
+# values <- list(
+#   path = paths,
+#   tempthresh = c('10 minutes', '20 minutes'),
+#   spatthresh = c(50, 100)
+# )
 
-map <- tar_map(
-  values = values,
-  tar
-)
-
-c(map,
-  tar_combine(out, map['merged'])
-)
+# map <- tar_map(
+#   values = values,
+#   tar
+# )
+#
+# c(map,
+#   tar_combine(out, map['merged'])
+# )
 
 
 # Option 4 ----------------------------------------------------------------
 # Or for a sensitivity analysis, run across datasets and multiple thresholds (for example)
 # Note, we use data.table::CJ to make all to combinations of data and thresholds
-paths <- dir(input, '.csv', full.names = TRUE)
-values <- CJ(
-  path = paths,
-  tempthresh = c('10 minutes', '20 minutes'),
-  spatthresh = c(50, 100)
-)
+# paths <- dir(input, '.csv', full.names = TRUE)
+# values <- CJ(
+#   path = paths,
+#   tempthresh = c('10 minutes', '20 minutes'),
+#   spatthresh = c(50, 100)
+# )
 
 
-map <- tar_map(
-  values = values,
-  tar
-)
-
-c(map,
-  tar_combine(out, map['merged'])
-)
+# map <- tar_map(
+#   values = values,
+#   tar
+# )
+#
+# c(map,
+#   tar_combine(out, map['merged'])
+# )
