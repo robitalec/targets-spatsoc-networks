@@ -82,19 +82,22 @@ tar <- c(
   tar_target(
     gbi,
     get_gbi(DT = spatgroups, group = group, id = id),
-    map(spatgroups)
+    map(spatgroups),
+    iteration = 'list'
   ),
 
   tar_target(
     networks,
     get_network(gbi, data_format = 'GBI', association_index = associationindex),
-    map(gbi)
+    map(gbi),
+    iteration = 'list'
   ),
 
   tar_target(
     graphs,
     graph.adjacency(networks, mode = mode, diag = diag, weighted = weighted),
-    map(networks)
+    map(networks),
+    iteration = 'list'
   ),
 
   tar_target(
@@ -124,57 +127,57 @@ tar <- c(
 path <- 'input/locs-a.csv'
 tar
 
-
-# Option 2 ----------------------------------------------------------------
-# Or branch over multiple paths
-paths <- dir(input, '.csv', full.names = TRUE)
-values <- list(path = paths)
-
-map <- tar_map(
-  values = values,
-  tar
-)
-
-c(map,
-  tar_combine(out, map['merged'])
-)
-
-
-# Option 3 ----------------------------------------------------------------
-# Or for a data set specific thresholds
-paths <- dir(input, '.csv', full.names = TRUE)
-values <- list(
-  path = paths,
-  tempthresh = c('10 minutes', '20 minutes'),
-  spatthresh = c(50, 100)
-)
-
-map <- tar_map(
-  values = values,
-  tar
-)
-
-c(map,
-  tar_combine(out, map['merged'])
-)
-
-
-# Option 4 ----------------------------------------------------------------
-# Or for a sensitivity analysis, run across datasets and multiple thresholds (for example)
-# Note, we use data.table::CJ to make all to combinations of data and thresholds
-paths <- dir(input, '.csv', full.names = TRUE)
-values <- CJ(
-  path = paths,
-  tempthresh = c('10 minutes', '20 minutes'),
-  spatthresh = c(50, 100)
-)
-
-
-map <- tar_map(
-  values = values,
-  tar
-)
-
-c(map,
-  tar_combine(out, map['merged'])
-)
+#
+# # Option 2 ----------------------------------------------------------------
+# # Or branch over multiple paths
+# paths <- dir(input, '.csv', full.names = TRUE)
+# values <- list(path = paths)
+#
+# map <- tar_map(
+#   values = values,
+#   tar
+# )
+#
+# c(map,
+#   tar_combine(out, map['merged'])
+# )
+#
+#
+# # Option 3 ----------------------------------------------------------------
+# # Or for a data set specific thresholds
+# paths <- dir(input, '.csv', full.names = TRUE)
+# values <- list(
+#   path = paths,
+#   tempthresh = c('10 minutes', '20 minutes'),
+#   spatthresh = c(50, 100)
+# )
+#
+# map <- tar_map(
+#   values = values,
+#   tar
+# )
+#
+# c(map,
+#   tar_combine(out, map['merged'])
+# )
+#
+#
+# # Option 4 ----------------------------------------------------------------
+# # Or for a sensitivity analysis, run across datasets and multiple thresholds (for example)
+# # Note, we use data.table::CJ to make all to combinations of data and thresholds
+# paths <- dir(input, '.csv', full.names = TRUE)
+# values <- CJ(
+#   path = paths,
+#   tempthresh = c('10 minutes', '20 minutes'),
+#   spatthresh = c(50, 100)
+# )
+#
+#
+# map <- tar_map(
+#   values = values,
+#   tar
+# )
+#
+# c(map,
+#   tar_combine(out, map['merged'])
+# )
