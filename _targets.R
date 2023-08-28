@@ -11,6 +11,8 @@ library(spatsoc)
 library(asnipe)
 library(igraph)
 
+library(anytime)
+
 # Functions ---------------------------------------------------------------
 source('R/functions.R')
 
