@@ -38,7 +38,6 @@ associationindex <- 'SRI'
 
 # igraph::graph.adjacency
 mode <- 'undirected'
-diag <- FALSE
 weighted <- TRUE
 
 # group_pts/general branching
@@ -99,7 +98,7 @@ tar <- c(
   tar_target(
     graphs,
     graph_from_adjacency_matrix(networks, mode = mode,
-                                diag = diag, weighted = weighted),
+                                diag = FALSE, weighted = weighted),
     map(networks),
     iteration = 'list',
     format = 'rds'
