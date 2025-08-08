@@ -12,8 +12,13 @@
 #' DT <- read_data(path = path)
 #' prep_dates(DT, 'datetime')
 prep_dates <- function(DT, datetime) {
-  check_truelength(DT)
-  check_col(DT, datetime, 'datetime')
+  if (truelength(DT) == 0) {
+    stop('please run data.table::alloc.col on your DT to allocate columns')
+  }
+
+  if (!datetime %in% colnames(DT)) {
+    stop('datetime not found in DT')
+  }
 
   DT[, datetime := as.POSIXct(datetime), env = list(datetime = datetime)]
 
