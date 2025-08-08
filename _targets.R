@@ -99,7 +99,8 @@ tar <- c(
 
   tar_target(
     graphs,
-    graph.adjacency(networks, mode = mode, diag = diag, weighted = weighted),
+    graph_from_adjacency_matrix(networks, mode = mode,
+                                diag = diag, weighted = weighted),
     map(networks),
     iteration = 'list',
     format = 'rds'
