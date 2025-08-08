@@ -15,7 +15,7 @@ prep_dates <- function(DT, datetime) {
   check_truelength(DT)
   check_col(DT, datetime, 'datetime')
 
-  DT[, datetime := as.POSIXct(first(.SD)), .SDcols = datetime]
+  DT[, datetime := as.POSIXct(datetime), env = list(datetime = datetime)]
 
   DT[, doy := data.table::yday(datetime)]
   DT[, yr := data.table::year(datetime)]
