@@ -13,23 +13,49 @@ graph LR
   style Graph fill:#FFFFFF00,stroke:#000000;
   subgraph Legend
     xf1522833a4d242c5(["Up to date"]):::uptodate
+    xbecb13963f49e50b{{"Object"}}:::none
+    xeb2d7cac8a1ce544>"Function"]:::none
     xd03d7c7dd2ddda2b(["Regular target"]):::none
     x6f7e04ea3427f824["Dynamic branches"]:::none
   end
   subgraph Graph
     direction LR
+    xfeaff7c1bc5fe2e5{{"group"}}:::uptodate --> x8b0c676d7240242a["gbi"]:::uptodate
     xdf10c21b92224150["spatgroups"]:::uptodate --> x8b0c676d7240242a["gbi"]:::uptodate
+    xc25194a2e4c760d5{{"id"}}:::uptodate --> x8b0c676d7240242a["gbi"]:::uptodate
     xc389638817199bf0["networks"]:::uptodate --> x2db02d438e6d5e6f["graphs"]:::uptodate
+    x7ceaaf778822044f{{"weighted"}}:::uptodate --> x2db02d438e6d5e6f["graphs"]:::uptodate
+    x46c09bf5c2e742c0{{"diag"}}:::uptodate --> x2db02d438e6d5e6f["graphs"]:::uptodate
+    x8568773019f89f54{{"mode"}}:::uptodate --> x2db02d438e6d5e6f["graphs"]:::uptodate
+    x3a8cafda074e65bb{{"path"}}:::uptodate --> x5d49490da5202c91(["locs"]):::uptodate
+    x7691bca923fa768d{{"temporal_threshold"}}:::uptodate --> x0babe2584c9010e0["merged"]:::uptodate
     x544e14c8fac2c5b0["metrics"]:::uptodate --> x0babe2584c9010e0["merged"]:::uptodate
+    x86be964788bf0a62{{"spatial_threshold"}}:::uptodate --> x0babe2584c9010e0["merged"]:::uptodate
     xe5f9f129783c9289(["splitsnames"]):::uptodate --> x0babe2584c9010e0["merged"]:::uptodate
+    x6f3a445de245bc35>"calc_metrics"]:::uptodate --> x544e14c8fac2c5b0["metrics"]:::uptodate
     x2db02d438e6d5e6f["graphs"]:::uptodate --> x544e14c8fac2c5b0["metrics"]:::uptodate
+    xc46e1ab6af5c8492{{"associationindex"}}:::uptodate --> xc389638817199bf0["networks"]:::uptodate
     x8b0c676d7240242a["gbi"]:::uptodate --> xc389638817199bf0["networks"]:::uptodate
+    xe1070fbd6d46a47b{{"datetime"}}:::uptodate --> x3906e3b7b61cde90(["prep"]):::uptodate
     x5d49490da5202c91(["locs"]):::uptodate --> x3906e3b7b61cde90(["prep"]):::uptodate
+    xd135a9eb46727432>"prep_dates"]:::uptodate --> x3906e3b7b61cde90(["prep"]):::uptodate
+    x83d114b3a3c10259>"check_col"]:::uptodate --> xd135a9eb46727432>"prep_dates"]:::uptodate
+    xdc96f2f8f81b25ad>"check_truelength"]:::uptodate --> xd135a9eb46727432>"prep_dates"]:::uptodate
+    xc25194a2e4c760d5{{"id"}}:::uptodate --> xdf10c21b92224150["spatgroups"]:::uptodate
+    xbd740468b493bf05{{"coords"}}:::uptodate --> xdf10c21b92224150["spatgroups"]:::uptodate
+    x86be964788bf0a62{{"spatial_threshold"}}:::uptodate --> xdf10c21b92224150["spatgroups"]:::uptodate
     xc119b121c4bf638e["timegroups"]:::uptodate --> xdf10c21b92224150["spatgroups"]:::uptodate
+    x6fa178f2283ab5b1{{"splitBy"}}:::uptodate --> xf94084fe2fb21595(["splits"]):::uptodate
     x3906e3b7b61cde90(["prep"]):::uptodate --> xf94084fe2fb21595(["splits"]):::uptodate
+    x3a8cafda074e65bb{{"path"}}:::uptodate --> xe5f9f129783c9289(["splitsnames"]):::uptodate
+    x6fa178f2283ab5b1{{"splitBy"}}:::uptodate --> xe5f9f129783c9289(["splitsnames"]):::uptodate
     x3906e3b7b61cde90(["prep"]):::uptodate --> xe5f9f129783c9289(["splitsnames"]):::uptodate
+    x7691bca923fa768d{{"temporal_threshold"}}:::uptodate --> xc119b121c4bf638e["timegroups"]:::uptodate
+    xe1070fbd6d46a47b{{"datetime"}}:::uptodate --> xc119b121c4bf638e["timegroups"]:::uptodate
     xf94084fe2fb21595(["splits"]):::uptodate --> xc119b121c4bf638e["timegroups"]:::uptodate
-    
+    xec6515aea887f2e6>"check_type"]:::uptodate
+    x2ee4157c3daee3b7{{"input"}}:::uptodate
+    x3e158351e917890c>"overwrite_col"]:::uptodate
   end
   classDef uptodate stroke:#000000,color:#ffffff,fill:#354823;
   classDef none stroke:#000000,color:#000000,fill:#94a4ac;
