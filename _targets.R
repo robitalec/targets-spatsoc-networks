@@ -112,7 +112,10 @@ tar <- c(
 
   tar_target(
     merged,
-    cbind(metrics, splitsnames, spatial_threshold = spatial_threshold, temporal_threshold = temporal_threshold),
+    cbind(metrics,
+          splitsnames,
+          spatial_threshold = spatial_threshold,
+          temporal_threshold = temporal_threshold),
     map(metrics, splitsnames)
   )
 )
