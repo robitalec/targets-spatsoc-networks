@@ -9,7 +9,9 @@ always_allow_html: true
 
 # targets-spatsoc-networks
 
-Example [`targets`](https://github.com/ropensci/targets) workflow for generating networks using [`spatsoc`](https://github.com/ropensci/spatsoc/).
+A template [`targets`](https://github.com/ropensci/targets) workflow for
+generating social networks from GPS data with
+[`spatsoc`](https://github.com/ropensci/spatsoc/).
 
 ```{r include=FALSE}
 a <- targets::tar_visnetwork(targets_only = TRUE)
