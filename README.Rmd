@@ -13,10 +13,15 @@ A template [`targets`](https://github.com/ropensci/targets) workflow for
 generating social networks from GPS data with
 [`spatsoc`](https://github.com/ropensci/spatsoc/).
 
-
-```{r, results = "asis", echo = FALSE}
-cat(c("```{mermaid}", targets::tar_mermaid(reporter = 'silent'), "```"), sep = "\n\n")
+```{r, echo=FALSE, message = FALSE, results='asis'}
+cat(
+  "```mermaid",
+  targets::tar_mermaid(targets_only = TRUE, reporter = 'silent'),
+  "```",
+  sep = "\n"
+)
 ```
+
 
 
 ## Usage
