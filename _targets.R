@@ -93,14 +93,16 @@ tar <- c(
     networks,
     get_network(gbi, data_format = 'GBI', association_index = associationindex),
     map(gbi),
-    iteration = 'list'
+    iteration = 'list',
+    format = 'rds'
   ),
 
   tar_target(
     graphs,
     graph.adjacency(networks, mode = mode, diag = diag, weighted = weighted),
     map(networks),
-    iteration = 'list'
+    iteration = 'list',
+    format = 'rds'
   ),
 
   tar_target(
