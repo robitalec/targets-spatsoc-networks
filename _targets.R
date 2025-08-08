@@ -10,7 +10,7 @@ library(fst)
 library(data.table)
 library(spatsoc)
 library(asnipe)
-library(igraph, verbose = FALSE)
+library(igraph, warn.conflicts = FALSE)
 
 
 
