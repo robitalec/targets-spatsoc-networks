@@ -26,7 +26,6 @@ tar_option_set(format = 'fst_dt')
 # Variables ---------------------------------------------------------------
 temporal_threshold <- '10 minutes'
 spatial_threshold <- 50
-input <- 'input'
 
 datetime <- 'datetime'
 id <- 'ID'
@@ -51,7 +50,7 @@ splitBy <- c('yr', 'mnth')
 tar <- c(
   tar_target(
     locs,
-    fread(path)
+    fread(filepath)
   ),
 
   tar_target(
@@ -67,7 +66,7 @@ tar <- c(
 
   tar_target(
     splitsnames,
-    unique(prep[, .(path = path), by = splitBy])
+    unique(prep[, .(filepath = filepath), by = splitBy])
   ),
 
   tar_target(
@@ -129,15 +128,15 @@ tar <- c(
 
 
 # Option 1 ----------------------------------------------------------------
-# Run for a single path
-path <- 'input/locs-a.csv'
+# Run for a single filepath
+filepath <- 'input/locs-a.csv'
 tar
 
 #
 # # Option 2 ----------------------------------------------------------------
-# # Or branch over multiple paths
-# paths <- dir(input, '.csv', full.names = TRUE)
-# values <- list(path = paths)
+# # Or branch over multiple filepaths
+# filepaths <- dir('input', '.csv', full.names = TRUE)
+# values <- list(filepath = filepaths)
 #
 # map <- tar_map(
 #   values = values,
@@ -151,9 +150,9 @@ tar
 #
 # # Option 3 ----------------------------------------------------------------
 # # Or for a data set specific thresholds
-# paths <- dir(input, '.csv', full.names = TRUE)
+# filepaths <- dir('input', '.csv', full.names = TRUE)
 # values <- list(
-#   path = paths,
+#   filepath = filepaths,
 #   temporal_threshold = c('10 minutes', '20 minutes'),
 #   spatial_threshold = c(50, 100)
 # )
@@ -171,9 +170,9 @@ tar
 # # Option 4 ----------------------------------------------------------------
 # # Or for a sensitivity analysis, run across datasets and multiple thresholds (for example)
 # # Note, we use data.table::CJ to make all to combinations of data and thresholds
-# paths <- dir(input, '.csv', full.names = TRUE)
+# filepaths <- dir('input', '.csv', full.names = TRUE)
 # values <- CJ(
-#   path = paths,
+#   filepath = filepaths,
 #   temporal_threshold = c('10 minutes', '20 minutes'),
 #   spatial_threshold = c(50, 100)
 # )
