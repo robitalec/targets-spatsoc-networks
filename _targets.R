@@ -5,12 +5,12 @@
 # Packages ----------------------------------------------------------------
 library(targets)
 library(tarchetypes)
-library(qs2)
+suppressPackageStartupMessages(library(qs2))
 
 library(data.table)
 library(spatsoc)
 library(asnipe)
-library(igraph)
+suppressPackageStartupMessages(library(igraph))
 
 
 
