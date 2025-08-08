@@ -20,7 +20,7 @@ tar_source('R')
 
 
 # Targets options ---------------------------------------------------------
-tar_option_set(format = 'qs')
+tar_option_set(format = 'fst_dt')
 
 
 # Variables ---------------------------------------------------------------
