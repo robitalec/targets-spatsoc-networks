@@ -5,6 +5,7 @@
 # Packages ----------------------------------------------------------------
 library(targets)
 library(tarchetypes)
+library(qs2)
 
 library(data.table)
 library(spatsoc)
