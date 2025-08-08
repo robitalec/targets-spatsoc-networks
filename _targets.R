@@ -13,8 +13,9 @@ library(asnipe)
 library(igraph)
 
 
+
 # Functions ---------------------------------------------------------------
-source('R/functions.R')
+tar_source('R')
 
 
 
@@ -43,6 +44,7 @@ weighted <- TRUE
 
 # group_pts/general branching
 splitBy <- c('yr', 'mnth')
+
 
 
 # Targets -----------------------------------------------------------------
