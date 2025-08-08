@@ -33,20 +33,27 @@ cat(
 5. Set your output (see below)
 6. Run `targets::tar_make()`
 
-As for output, right now it's set up with four different options after the Targets section
+As for output, right now it's set up with four different options after the
+Targets section
 
 1. One data set, simply set the path
 2. Multiple data sets, provide the list or wildcard of paths
-3. Multiple data sets, and matching thresholds or other variables. Eg. one data set with 50m spatial threshold and another with 100m. 
-4. Multiple data sets, crossed with multiple thresholds (or other variables). This could be used for a sensitivity analysis. 
+3. Multiple data sets, and matching thresholds or other variables( eg. one data
+set with 50m spatial threshold and another with 100m).
+4. Multiple data sets, crossed with multiple thresholds (or other variables). 
+This could be used for a sensitivity analysis. 
 
-To select your output format, comment out or delete the other options. Targets looks for the last declared target in the `_targets.R` file. 
+To select your output format, comment out or delete the other options. 
+{targets} looks for the last declared target in the `_targets.R` file. 
 
-
-Note: randomizations in progress, see the [branch](https://github.com/robitalec/targets-spatsoc-networks/tree/randomizations). 
 
 ## Resources
 
-[`spatsoc` vignette: Using `spatsoc` in social network analysis](https://docs.ropensci.org/spatsoc/articles/using-in-sna.html)
-
-[`targets` manual](https://books.ropensci.org/targets/)
+- {spatsoc} 
+  - https://docs.ropensci.org/spatsoc/
+  - https://docs.ropensci.org/spatsoc/articles/using-in-sna.html
+- {targets}
+  - https://docs.ropensci.org/targets
+  - https://books.ropensci.org/targets
+  
+  
