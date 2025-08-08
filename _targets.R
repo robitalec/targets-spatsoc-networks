@@ -23,8 +23,8 @@ tar_option_set(format = 'qs')
 
 
 # Variables ---------------------------------------------------------------
-tempthresh <- '10 minutes'
-spatthresh <- 50
+temporal_threshold <- '10 minutes'
+spatial_threshold <- 50
 input <- 'input'
 
 datetime <- 'datetime'
@@ -70,13 +70,13 @@ tar <- c(
 
   tar_target(
     timegroups,
-    group_times(splits, datetime, tempthresh),
+    group_times(splits, datetime, temporal_threshold),
     map(splits)
   ),
 
   tar_target(
     spatgroups,
-    group_pts(timegroups, spatthresh, id, coords, 'timegroup'),
+    group_pts(timegroups, spatial_threshold, id, coords, 'timegroup'),
     map(timegroups)
   ),
 
@@ -109,7 +109,7 @@ tar <- c(
 
   tar_target(
     merged,
-    cbind(metrics, splitsnames, spatthresh = spatthresh, tempthresh = tempthresh),
+    cbind(metrics, splitsnames, spatial_threshold = spatial_threshold, temporal_threshold = temporal_threshold),
     map(metrics, splitsnames)
   )
 )
@@ -149,8 +149,8 @@ tar
 # paths <- dir(input, '.csv', full.names = TRUE)
 # values <- list(
 #   path = paths,
-#   tempthresh = c('10 minutes', '20 minutes'),
-#   spatthresh = c(50, 100)
+#   temporal_threshold = c('10 minutes', '20 minutes'),
+#   spatial_threshold = c(50, 100)
 # )
 #
 # map <- tar_map(
@@ -169,8 +169,8 @@ tar
 # paths <- dir(input, '.csv', full.names = TRUE)
 # values <- CJ(
 #   path = paths,
-#   tempthresh = c('10 minutes', '20 minutes'),
-#   spatthresh = c(50, 100)
+#   temporal_threshold = c('10 minutes', '20 minutes'),
+#   spatial_threshold = c(50, 100)
 # )
 #
 #
