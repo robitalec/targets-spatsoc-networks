@@ -28,7 +28,6 @@ spatthresh <- 50
 input <- 'input'
 
 datetime <- 'datetime'
-tz <- 'Canada/Newfoundland'
 id <- 'ID'
 coords <- c('X', 'Y')
 
@@ -55,7 +54,7 @@ tar <- c(
 
   tar_target(
     prep,
-    prep_dates(locs, datetime, tz)
+    prep_dates(locs, datetime)
   ),
 
   tar_target(
