@@ -50,26 +50,26 @@ tar <- c(
   tar_target(
     locs,
     fread(filepath),
-    description = 'fread(filepath)'
+    description = '<pre>fread(filepath)</pre>'
   ),
 
   tar_target(
     prep,
     prep_dates(locs, datetime),
-    description = 'prep_dates(locs, datetime)'
+    description = '<pre>prep_dates(locs, datetime)</pre>'
   ),
 
   tar_target(
     splits,
     prep[, tar_group := .GRP, by = splitBy],
     iteration = 'group',
-    description = 'tar_group by splitBy'
+    description = '<pre>tar_group</pre> by splitBy'
   ),
 
   tar_target(
     splitsnames,
     unique(prep[, .(filepath = filepath), by = splitBy]),
-    description = 'unique(filepath) by splitBY'
+    description = '<pre>unique(filepath)</pre> by splitBY'
   ),
 
   tar_target(
@@ -93,7 +93,7 @@ tar <- c(
       timegroup = 'timegroup'
     ),
     map(timegroups),
-    description = 'group_pts()'
+    description = '<pre>group_pts()</pre>'
   ),
 
   tar_target(
@@ -105,7 +105,7 @@ tar <- c(
     ),
     map(spatgroups),
     iteration = 'list',
-    description = 'get_gbi()'
+    description = '<pre>get_gbi()</pre>'
   ),
 
   tar_target(
@@ -118,7 +118,7 @@ tar <- c(
     map(gbi),
     iteration = 'list',
     format = 'rds',
-    description = 'asnipe::get_network()'
+    description = '<pre>asnipe::get_network()</pre>'
   ),
 
   tar_target(
@@ -132,14 +132,14 @@ tar <- c(
     map(networks),
     iteration = 'list',
     format = 'rds',
-    description = 'igraph::graph_from_adjacency_matrix()'
+    description = '<pre>igraph::graph_from_adjacency_matrix()</pre>'
   ),
 
   tar_target(
     metrics,
     calc_metrics(graphs),
     map(graphs),
-    description = 'calc_metrics()'
+    description = '<pre>calc_metrics()</pre>'
   ),
 
   tar_target(
