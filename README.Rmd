@@ -33,8 +33,8 @@ cat(
 5. Set your output (see below)
 6. Run `targets::tar_make()`
 
-As for output, right now it's set up with four different options after the
-Targets section
+You can adjust the output using the four different options in the `_targets.R`
+script after the Targets section. The options include:
 
 1. One data set, simply set the path
 2. Multiple data sets, provide the list or wildcard of paths
