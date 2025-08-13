@@ -41,15 +41,15 @@ graph LR
     xbd740468b493bf05{{"coords"}}:::uptodate --> xdf10c21b92224150["spatgroups<br>group_pts()"]:::uptodate
     xc25194a2e4c760d5{{"id"}}:::uptodate --> xdf10c21b92224150["spatgroups<br>group_pts()"]:::uptodate
     x86be964788bf0a62{{"spatial_threshold"}}:::uptodate --> xdf10c21b92224150["spatgroups<br>group_pts()"]:::uptodate
-    xc119b121c4bf638e["timegroups<br>group_times()"]:::uptodate --> xdf10c21b92224150["spatgroups<br>group_pts()"]:::uptodate
+    xc119b121c4bf638e["timegroups<br>`group_times()`"]:::uptodate --> xdf10c21b92224150["spatgroups<br>group_pts()"]:::uptodate
     x6fa178f2283ab5b1{{"splitBy"}}:::uptodate --> xf94084fe2fb21595(["splits<br>tar_group by splitBy"]):::uptodate
     x3906e3b7b61cde90(["prep<br>prep_dates(locs, datetime)"]):::uptodate --> xf94084fe2fb21595(["splits<br>tar_group by splitBy"]):::uptodate
     x251c0fecf340765b{{"filepath"}}:::uptodate --> xe5f9f129783c9289(["splitsnames<br>unique(filepath) by splitBY"]):::uptodate
     x6fa178f2283ab5b1{{"splitBy"}}:::uptodate --> xe5f9f129783c9289(["splitsnames<br>unique(filepath) by splitBY"]):::uptodate
     x3906e3b7b61cde90(["prep<br>prep_dates(locs, datetime)"]):::uptodate --> xe5f9f129783c9289(["splitsnames<br>unique(filepath) by splitBY"]):::uptodate
-    xe1070fbd6d46a47b{{"datetime"}}:::uptodate --> xc119b121c4bf638e["timegroups<br>group_times()"]:::uptodate
-    x7691bca923fa768d{{"temporal_threshold"}}:::uptodate --> xc119b121c4bf638e["timegroups<br>group_times()"]:::uptodate
-    xf94084fe2fb21595(["splits<br>tar_group by splitBy"]):::uptodate --> xc119b121c4bf638e["timegroups<br>group_times()"]:::uptodate
+    xe1070fbd6d46a47b{{"datetime"}}:::uptodate --> xc119b121c4bf638e["timegroups<br>`group_times()`"]:::uptodate
+    x7691bca923fa768d{{"temporal_threshold"}}:::uptodate --> xc119b121c4bf638e["timegroups<br>`group_times()`"]:::uptodate
+    xf94084fe2fb21595(["splits<br>tar_group by splitBy"]):::uptodate --> xc119b121c4bf638e["timegroups<br>`group_times()`"]:::uptodate
     
   end
   classDef uptodate stroke:#000000,color:#ffffff,fill:#354823;
