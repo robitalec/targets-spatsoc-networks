@@ -80,7 +80,7 @@ tar <- c(
       threshold = temporal_threshold
     ),
     map(splits),
-    description = '`group_times()`'
+    description = 'group_times()'
   ),
 
   tar_target(
