@@ -46,7 +46,7 @@ splitBy <- c('yr', 'mnth')
 
 
 # Targets -----------------------------------------------------------------
-tar <- c(
+target_list <- c(
   tar_target(
     locs,
     fread(filepath),
@@ -165,7 +165,7 @@ tar <- c(
 # Option 1 ----------------------------------------------------------------
 # Run for a single filepath
 filepath <- 'input/locs-a.csv'
-tar
+target_list
 
 #
 # # Option 2 ----------------------------------------------------------------
@@ -175,7 +175,7 @@ tar
 #
 # map <- tar_map(
 #   values = values,
-#   tar
+#   target_list
 # )
 #
 # c(map,
@@ -194,7 +194,7 @@ tar
 #
 # map <- tar_map(
 #   values = values,
-#   tar
+#   target_list
 # )
 #
 # c(map,
@@ -215,7 +215,7 @@ tar
 #
 # map <- tar_map(
 #   values = values,
-#   tar
+#   target_list
 # )
 #
 # c(map,
