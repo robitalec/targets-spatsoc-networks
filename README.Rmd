@@ -38,7 +38,7 @@ Targets section
 
 1. One data set, simply set the path
 2. Multiple data sets, provide the list or wildcard of paths
-3. Multiple data sets, and matching thresholds or other variables( eg. one data
+3. Multiple data sets, and matching thresholds or other variables (eg. one data
 set with 50m spatial threshold and another with 100m).
 4. Multiple data sets, crossed with multiple thresholds (or other variables). 
 This could be used for a sensitivity analysis. 
