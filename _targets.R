@@ -159,11 +159,12 @@ target_list <- c(
 # Output ------------------------------------------------------------------
 
 # Note, to choose which option to run, simply comment out the other options
-# targets will run the last one left uncommented
+# {targets} looks for the last defined list of targets in the targets.R
+#  file.
 
 
 # Option 1 ----------------------------------------------------------------
-# Run for a single filepath
+# Set a filepath and return the list of targets defined above
 filepath <- 'input/locs-a.csv'
 target_list
 

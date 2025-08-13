@@ -44,7 +44,7 @@ set with 50m spatial threshold and another with 100m).
 This could be used for a sensitivity analysis. 
 
 To select your output format, comment out or delete the other options. 
-{targets} looks for the last declared target in the `_targets.R` file. 
+{targets} looks for the last declared list of targets in the `_targets.R` file. 
 
 
 ## Resources
