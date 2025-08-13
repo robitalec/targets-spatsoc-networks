@@ -1,34 +1,33 @@
-# === Spatsoc networks - targets workflow ---------------------------------
+# === {spatsoc} networks - {targets} workflow -----------------------------
 # Alec L. Robitaille
 
 
 # Packages ----------------------------------------------------------------
 library(targets)
 library(tarchetypes)
+library(fst)
 
 library(data.table)
 library(spatsoc)
 library(asnipe)
-library(igraph)
+library(igraph, warn.conflicts = FALSE)
 
-library(anytime)
+
 
 # Functions ---------------------------------------------------------------
-source('R/functions.R')
+tar_source('R')
 
 
 
 # Targets options ---------------------------------------------------------
-tar_option_set(format = 'qs')
+tar_option_set(format = 'fst_dt')
 
 
 # Variables ---------------------------------------------------------------
-tempthresh <- '10 minutes'
-spatthresh <- 50
-input <- 'input'
+temporal_threshold <- '10 minutes'
+spatial_threshold <- 50
 
 datetime <- 'datetime'
-tz <- 'Canada/Newfoundland'
 id <- 'ID'
 coords <- c('X', 'Y')
 
@@ -39,79 +38,118 @@ associationindex <- 'SRI'
 
 # igraph::graph.adjacency
 mode <- 'undirected'
-diag <- FALSE
 weighted <- TRUE
 
 # group_pts/general branching
 splitBy <- c('yr', 'mnth')
 
 
+
 # Targets -----------------------------------------------------------------
-tar <- c(
+target_list <- c(
   tar_target(
     locs,
-    fread(path)
+    fread(filepath),
+    description = 'fread(filepath)'
   ),
 
   tar_target(
     prep,
-    prep_dates(locs, datetime, tz)
+    prep_dates(locs, datetime),
+    description = 'prep_dates(locs, datetime)'
   ),
 
   tar_target(
     splits,
     prep[, tar_group := .GRP, by = splitBy],
-    iteration = 'group'
+    iteration = 'group',
+    description = 'tar_group by splitBy'
   ),
 
   tar_target(
     splitsnames,
-    unique(prep[, .(path = path), by = splitBy])
+    unique(prep[, .(filepath = filepath), by = splitBy]),
+    description = 'unique(filepath) by splitBY'
   ),
 
   tar_target(
     timegroups,
-    group_times(splits, datetime, tempthresh),
-    map(splits)
+    group_times(
+      DT = splits,
+      datetime = datetime,
+      threshold = temporal_threshold
+    ),
+    map(splits),
+    description = 'group_times()'
   ),
 
   tar_target(
     spatgroups,
-    group_pts(timegroups, spatthresh, id, coords, 'timegroup'),
-    map(timegroups)
+    group_pts(
+      DT = timegroups,
+      threshold = spatial_threshold,
+      id = id,
+      coords = coords,
+      timegroup = 'timegroup'
+    ),
+    map(timegroups),
+    description = 'group_pts()'
   ),
 
   tar_target(
     gbi,
-    get_gbi(DT = spatgroups, group = group, id = id),
+    get_gbi(
+      DT = spatgroups,
+      group = group,
+      id = id
+    ),
     map(spatgroups),
-    iteration = 'list'
+    iteration = 'list',
+    description = 'get_gbi()'
   ),
 
   tar_target(
     networks,
-    get_network(gbi, data_format = 'GBI', association_index = associationindex),
+    get_network(
+      association_data = gbi,
+      data_format = 'GBI',
+      association_index = associationindex
+    ),
     map(gbi),
-    iteration = 'list'
+    iteration = 'list',
+    format = 'rds',
+    description = 'asnipe::get_network()'
   ),
 
   tar_target(
     graphs,
-    graph.adjacency(networks, mode = mode, diag = diag, weighted = weighted),
+    graph_from_adjacency_matrix(
+      adjmatrix = networks,
+      mode = mode,
+      diag = FALSE,
+      weighted = weighted
+    ),
     map(networks),
-    iteration = 'list'
+    iteration = 'list',
+    format = 'rds',
+    description = 'igraph::graph_from_adjacency_matrix()'
   ),
 
   tar_target(
     metrics,
     calc_metrics(graphs),
-    map(graphs)
+    map(graphs),
+    description = 'calc_metrics()'
   ),
 
   tar_target(
     merged,
-    cbind(metrics, splitsnames, spatthresh = spatthresh, tempthresh = tempthresh),
-    map(metrics, splitsnames)
+    cbind(metrics,
+          splitsnames,
+          spatial_threshold = spatial_threshold,
+          temporal_threshold = temporal_threshold),
+    map(metrics, splitsnames),
+    description = 'output'
   )
 )
 
@@ -121,23 +159,24 @@ tar <- c(
 # Output ------------------------------------------------------------------
 
 # Note, to choose which option to run, simply comment out the other options
-# targets will run the last one left uncommented
+# {targets} looks for the last defined list of targets in the targets.R
+#  file.
 
 
 # Option 1 ----------------------------------------------------------------
-# Run for a single path
-path <- 'input/locs-a.csv'
-tar
+# Set a filepath and return the list of targets defined above
+filepath <- 'input/locs-a.csv'
+target_list
 
 #
 # # Option 2 ----------------------------------------------------------------
-# # Or branch over multiple paths
-# paths <- dir(input, '.csv', full.names = TRUE)
-# values <- list(path = paths)
+# # Or branch over multiple filepaths
+# filepaths <- dir('input', '.csv', full.names = TRUE)
+# values <- list(filepath = filepaths)
 #
 # map <- tar_map(
 #   values = values,
-#   tar
+#   target_list
 # )
 #
 # c(map,
@@ -147,16 +186,16 @@ tar
 #
 # # Option 3 ----------------------------------------------------------------
 # # Or for a data set specific thresholds
-# paths <- dir(input, '.csv', full.names = TRUE)
+# filepaths <- dir('input', '.csv', full.names = TRUE)
 # values <- list(
-#   path = paths,
-#   tempthresh = c('10 minutes', '20 minutes'),
-#   spatthresh = c(50, 100)
+#   filepath = filepaths,
+#   temporal_threshold = c('10 minutes', '20 minutes'),
+#   spatial_threshold = c(50, 100)
 # )
 #
 # map <- tar_map(
 #   values = values,
-#   tar
+#   target_list
 # )
 #
 # c(map,
@@ -167,17 +206,17 @@ tar
 # # Option 4 ----------------------------------------------------------------
 # # Or for a sensitivity analysis, run across datasets and multiple thresholds (for example)
 # # Note, we use data.table::CJ to make all to combinations of data and thresholds
-# paths <- dir(input, '.csv', full.names = TRUE)
+# filepaths <- dir('input', '.csv', full.names = TRUE)
 # values <- CJ(
-#   path = paths,
-#   tempthresh = c('10 minutes', '20 minutes'),
-#   spatthresh = c(50, 100)
+#   filepath = filepaths,
+#   temporal_threshold = c('10 minutes', '20 minutes'),
+#   spatial_threshold = c(50, 100)
 # )
 #
 #
 # map <- tar_map(
 #   values = values,
-#   tar
+#   target_list
 # )
 #
 # c(map,
