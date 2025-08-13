@@ -1,4 +1,4 @@
-# === Spatsoc networks - targets workflow ---------------------------------
+# === {spatsoc} networks - {targets} workflow -----------------------------
 # Alec L. Robitaille
 
 
